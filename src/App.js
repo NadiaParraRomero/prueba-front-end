@@ -6,8 +6,7 @@ import Listado from './components/Listado';
 import Buscar from './components/Buscar';
 
 
-import { Link,BrowserRouter, Routes, Route, Switch } from 'react-router-dom'
-
+import { Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -33,16 +32,15 @@ function App() {
 
   return (
     <>
-    <Header />
+    <Header/>
     <BrowserRouter>
-      <Switch>
+    <Routes>
         <Route path="/" exact element={<Main />}/>
         <Route path="/buscar" exact element={<Buscar />}/>
         <Route path="/listar" exact element={<Listado />}/>
-      </Switch>
+      </Routes>
     </BrowserRouter>
     </>
   );
 }
-
 export default App;
