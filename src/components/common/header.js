@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect, useLocation } from 'react-router-dom';
+import { Route, Redirect, useLocation ,useHistory} from 'react-router-dom';
 import '../../index.css';
 import img1 from "../../img/img2.png";
 

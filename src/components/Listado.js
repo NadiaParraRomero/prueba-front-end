@@ -60,7 +60,7 @@ function Listado() {
       <h1>Componente listado</h1>
 
       <div className="contenedor" style={{ border: "3px solid black" }}>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -81,7 +81,7 @@ function Listado() {
                   <button
                     onClick={() => setAutor(a)}
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                   >
@@ -96,24 +96,24 @@ function Listado() {
 
       {/* <!-- Modal --> */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel"></h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               {autor && autor.nombre ? (
                 <>
                   <p>{autor.nombre}</p>
@@ -125,11 +125,11 @@ function Listado() {
                 </>
               ) : null}
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 onClick={() => setAutor({})}
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Cerrar
