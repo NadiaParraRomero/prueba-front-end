@@ -3,7 +3,7 @@ import { Route, Redirect, useLocation } from "react-router-dom";
 
 function Buscar() {
   // Hoook de estado para el arreglo de autores.
-  // const [autores, setAutores] = useState([]);
+  const [autores, setAutores] = useState([]);
 
   // hook de estado para valor de busqueda.
   const [idAutor, setIdAutor] = useState(0);
@@ -11,54 +11,107 @@ function Buscar() {
   // hook de estado para guardar el autor encontrado.
   const [autor, setAutor] = useState(null);
 
-  // useEffect(() => {
-  //     if(autores.length != 0){
-  //         console.log('HAY CAMVBIOS!!!!')
-  //     }
-  // },[autores]);
+  useEffect(() => {
+    if (autores.length != 0) {
+      console.log("HAY CAMVBIOS!!!!");
+    }
+  }, [autores]);
 
   // LISTADO DE PRUEBA PARA DESARROLLO.
-  const autores = [
-    {
-      id: 1,
-      nombre: "John Ronald Reuel Tolkien",
-      pseudonimo: "JRR Tolkien",
-      nacionalidad: "Británica",
-      obras: [
-        "El Hobbit",
-        "El Señor de los Anillos",
-        "El Silmarilion",
-        "Cuentos inconclusos",
-      ],
-    },
-    {
-      id: 2,
-      nombre: "Arthur Ignatius Conan Doyle",
-      pseudonimo: "Arthur Conan Doyle",
-      nacionalidad: "Británica",
-      obras: [
-        "Estudio en escarlata",
-        "El Signo de los cuatro",
-        "El sabueso de los Baskerville",
-        "El valle del terror",
-      ],
-    },
-    {
-      id: 3,
-      nombre: `'Oscar Fingal O'Flahertie Wills Wilde'`,
-      pseudonimo: "Oscar Wilde",
-      nacionalidad: "Británica Irlandesa",
-      obras: [
-        "El retrato de Dorian Gray",
-        "El principe feliz",
-        "De profundis",
-        "Balada de la cárcel de Reading",
-      ],
-    },
-  ];
+  // const autores = [
+  //   {
+  //     id: 1,
+  //     nombre: "John Ronald Reuel Tolkien",
+  //     pseudonimo: "JRR Tolkien",
+  //     nacionalidad: "Británica",
+  //     obras: [
+  //       "El Hobbit",
+  //       "El Señor de los Anillos",
+  //       "El Silmarilion",
+  //       "Cuentos inconclusos",
+  //     ],
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: "Arthur Ignatius Conan Doyle",
+  //     pseudonimo: "Arthur Conan Doyle",
+  //     nacionalidad: "Británica",
+  //     obras: [
+  //       "Estudio en escarlata",
+  //       "El Signo de los cuatro",
+  //       "El sabueso de los Baskerville",
+  //       "El valle del terror",
+  //     ],
+  //   },
+  //   {
+  //     id: 3,
+  //     nombre: `'Oscar Fingal O'Flahertie Wills Wilde'`,
+  //     pseudonimo: "Oscar Wilde",
+  //     nacionalidad: "Británica Irlandesa",
+  //     obras: [
+  //       "El retrato de Dorian Gray",
+  //       "El principe feliz",
+  //       "De profundis",
+  //       "Balada de la cárcel de Reading",
+  //     ],
+  //   },
+  // ];
+
+  // const response = await fetch(
+  //   'http://localhost/data/autores.php',
+  //   {
+  //     method: 'GET',
+  //   }
+  // );
+
+  // if(response) {
+  //   setAutores(response);
+  // }
+
+  // useEffect(() => {
+  //   fetch("http://localhost:8088/data/autores.php",{
+  //       mode: "no-cors"
+  //   })
+  //   .then((response) =>{
+
+  //     response.json();
+  //   })
+  //   .then((autores) =>{
+  //     // setAutores(autores);
+  //     console.log(autores);
+  //   })
+  // }, [])
+
+  // useEffect(() => {
+  //   fetch("http://localhost:8088/data/autores.php", {
+  //     mode: "no-cors",
+  //   })
+  //     .then(async (response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }, []);
+
+
+
+  useEffect(() => {
+    fetchData();
+  },[])
+
+
+  const fetchData = async () => {
+    await fetch("http://localhost:8088")
+      .then((response) => {
+        return response.json()
+      })
+      .then((autores) => {
+        // setProducts(response.result);
+        console.log(autores);
+      })
+      .catch((err) => console.error(err.message));
+  };
 
   function buscar() {
-
     if (idAutor === 0 || idAutor === undefined || idAutor === null) {
       alert("Debe ingresar un valor de busqueda");
     } else {
@@ -96,7 +149,7 @@ function Buscar() {
             />
           </p>
           <button
-            onClick={buscar} 
+            onClick={buscar}
             type="button"
             className="btn btn-primary"
             data-bs-toggle="modal"
