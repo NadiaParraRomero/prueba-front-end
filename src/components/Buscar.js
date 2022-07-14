@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Redirect, useLocation ,useHistory} from 'react-router-dom';
+import { Route, Redirect, useLocation } from "react-router-dom";
 
 function Buscar() {
   // Hoook de estado para el arreglo de autores.
@@ -59,8 +59,6 @@ function Buscar() {
 
   function buscar() {
 
-    const history = useHistory();
-
     if (idAutor === 0 || idAutor === undefined || idAutor === null) {
       alert("Debe ingresar un valor de busqueda");
     } else {
@@ -69,14 +67,12 @@ function Buscar() {
       } else {
         // buscar autor en array.
         // en caso de que se encuentra guardarlo en el hook de estado autor o leAutor enviar leAutor por props a Mostrar
-        // const autorEncontrado = autores.map((a) => {
         autores.map((a) => {
           if (a.id === parseInt(idAutor)) {
             console.log(a);
             setAutor(a);
           }
         });
-        autor ? history.push('/mostrar', {autor: autor}) : alert('No se encontro autor :(');
       }
     }
   }
@@ -99,10 +95,62 @@ function Buscar() {
               style={{ marginTop: "15px" }}
             />
           </p>
-          <button onClick={buscar} className="btn btn-primary">
+          <button
+            onClick={buscar} 
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
             buscar
           </button>
-          {idAutor}
+        </div>
+      </div>
+
+      {/* MOdal que muestra el autor buscado */}
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel"></h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              {autor && autor.nombre ? (
+                <>
+                  <p>{autor.nombre}</p>
+                  <ul>
+                    {autor.obras.map((o) => (
+                      <li>{o}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <p>NO SE ECONTRO AUTOR!</p>
+              )}
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={() => setAutor(null)}
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>
