@@ -1,6 +1,6 @@
 import react,{useState,useEffect} from 'react';
-import Edit from './components/Edit';
 import Header from './components/common/header';
+import Footer from './components/common/footer';
 import Main from './components/Main';
 import Listado from './components/Listado';
 import Buscar from './components/Buscar';
@@ -33,6 +33,7 @@ function App() {
   return (
     <>
     <Header/>
+    
     <BrowserRouter>
     <Routes>
         <Route path="/" exact element={<Main />}/>
@@ -40,6 +41,8 @@ function App() {
         <Route path="/listar" exact element={<Listado />}/>
       </Routes>
     </BrowserRouter>
+
+    <Footer/>
     </>
   );
 }
